@@ -37,6 +37,7 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    background-color: #28a745;
   }
   
   button.btn-primary {
@@ -67,13 +68,84 @@ body {
     padding: 10px;
     border-bottom: 1px solid #ccc;
   }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  tr {
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+  } 
+
+  th{
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding-left: 10px;
+  }
   
   li:last-child {
     border-bottom: none;
   }
-  
-  .task-completed {
-    text-decoration: line-through;
-    color: #888;
+
+  .completed_checkbox {
+    margin-right: 10px;
   }
   
+.task-completed {
+  text-decoration: line-through;
+  color: #888; /* You can choose your own color */
+}
+
+  
+  .app{
+    margin:10px;
+    border: 1px solid;
+  }
+
+  .todo-template{
+    padding: 10px;
+  }
+  ul{
+    border: 1px solid;
+  }
+  .checkbox-all{
+    margin: 10px;
+  }
+
+
+
+  .completed_checkbox{
+    border: 1px solid;
+  }
+
+  th:nth-child(4) {
+    width: 3%;
+}
+
+th:nth-child(1) {
+  width: 1%;
+}
+
+th:nth-child(3) {
+  width: 30%;
+}
+
+.delete-button, .profile_img {
+  cursor: pointer;
+  width: 30px; /* Set the desired width */
+  height: 30px; /* Set the desired height */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.update_message{
+  color: grey;
+  font-size: 10px;
+}

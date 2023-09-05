@@ -1,17 +1,28 @@
 <template>
-    <div>
-      <h1>Todo App</h1>
+    <div class="todo-template">
+      <input class="checkbox-all" type="checkbox" v-model="showall"> Show all Tasks
       <form @submit.prevent="addTask">
-        <input type="text" v-model="newTask" placeholder="Add a new task">
+        <img src="/images/profile.png" class="profile_img" />
+        <input type="text" v-model="newTask" placeholder="Project # To Do">
         <button type="submit">Add Task</button>
       </form>
-      <ul>
-        <li v-for="(task, index) in tasks" :key="index">
-          <span :class="{ 'task-completed': task.completed }">{{ task.title }}</span>
-          <button @click="markAsCompleted(task.id)">Mark Completed</button>
-          <button @click="deleteTask(task.id)">Delete</button>
-        </li>
-      </ul>
+      <table>
+        <tr v-for="(task, index) in tasks" :key="index">
+          <th v-if="!task.completed || showall">
+            <input class="completed_checkbox" type="checkbox" @click="markAsCompleted(task.id)" :checked="task.completed">
+          </th>
+          <th v-if="!task.completed || showall">
+            <span :class="{ 'task-completed': task.completed }">{{ task.title }}</span>
+            <span class="update_message" >  updated few seconds ago</span>
+          </th>
+          <th v-if="!task.completed || showall">
+            <img src="/images/profile.png" class="profile_img" />
+          </th>
+          <th v-if="!task.completed || showall">
+            <img src="/images/delete.png" @click="deleteTask(task.id)" alt="Delete" class="delete-button"/>
+          </th>
+        </tr>
+      </table>
     </div>
   </template>
   
@@ -20,7 +31,8 @@
     data() {
       return {
         tasks: [],
-        newTask: ''
+        newTask: '',
+        showall:false
       };
     },
     async created() {
@@ -52,7 +64,7 @@
       async markAsCompleted(taskId) {
         try {
           await this.$axios.put(`http://127.0.0.1:8000/api/todos/${taskId}`, {
-            completed: true
+            completed: !this.tasks.find(task => task.id === taskId).completed,
           });
           this.fetchTasks();
         } catch (error) {
@@ -71,7 +83,5 @@
   };
   </script>
   
-  <style>
-  /* Your styles go here */
-  </style>
+
   
